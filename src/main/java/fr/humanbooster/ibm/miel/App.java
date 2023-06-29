@@ -22,11 +22,79 @@ public class App {
 	private static PotBuilder potBuilder = new PotBuilderImpl();
 
 	public static void main(String[] args) {
-		Pot pot = potBuilder.choisirMiel("Lavande").choisirPoids(500).ajouterEtiquette("CDA 20").build();
+		demanderPoids();
+		demanderMiel();
+		//ajouterEtiquette();
+		Pot pot = potBuilder.build();
 		System.out.println(pot);
 
 		ajouterIngredient();
 	}
+
+	private static void demanderPoids() {
+		System.out.println("Veuillez choisir le poids du pot :");
+		System.out.println("1) 250 gr");
+		System.out.println("2) 500 gr");
+		System.out.println("3) 1 kg");
+
+		int choix = demanderChoix("Choisissez le numéro du poids : ", 1, 3);
+
+		switch (choix) {
+			case 1:
+				potBuilder.choisirPoids(250);
+				break;
+			case 2:
+				potBuilder.choisirPoids(500);
+				break;
+			case 3:
+				potBuilder.choisirPoids(1000);
+				break;
+			default:
+				break;
+				
+		}
+	}
+
+	private static void demanderMiel() {
+		System.out.println("Veuillez choisir le miel :");
+		System.out.println("1) Acacia");
+		System.out.println("2) Chataignier");
+		System.out.println("3) Lavande");
+		System.out.println("4) Thym");
+		System.out.println("5) Litchi");
+		System.out.println("6) Toutes Fleurs");
+
+		int choix = demanderChoix("Choisissez le numéro du miel : ", 1, 6);
+
+		switch (choix) {
+			case 1:
+				potBuilder.choisirMiel("Acacia");
+				break;
+			case 2:
+				potBuilder.choisirMiel("Chataignier");
+				break;
+			case 3:
+				potBuilder.choisirMiel("Lavande");
+				break;
+			case 4:
+				potBuilder.choisirMiel("Thym");
+				break;
+			case 5:
+				potBuilder.choisirMiel("Litchi");
+				break;
+			case 6:
+				potBuilder.choisirMiel("Toutes Fleurs");
+				break;
+			default:
+				break;
+		}
+	}
+
+	/*private static void ajouterEtiquette() {
+		System.out.println("Veuillez entrer le message de l'étiquette :");
+		String message = scanner.nextLine();
+		potBuilder.ajouterEtiquette(message);
+	}*/
 
 	private static void ajouterIngredient() {
 		boolean continuer = true;
@@ -38,27 +106,27 @@ public class App {
 			choix = demanderChoix("Choisissez le numéro de l'option : ", 1, 6);
 
 			switch (choix) {
-			case 1:
-				pot = new Propolis(pot);
-				break;
-			case 2:
-				pot = new Rayon(pot);
-				break;
-			case 3:
-				pot = new GeleeRoyale(pot);
-				break;
-			case 4:
-				pot = new HuileEssentielleDeCitronVert(pot);
-				break;
-			case 5:
-				pot = new Pollen(pot);
-				break;
-			case 6:
-				pot = new BrisuresDeTruffesNoires(pot);
-				break;
-			default:
-				System.out.println("Saisie incorrecte, merci de saisir un nombre compris entre 1 et 6");
-				break;
+				case 1:
+					pot = new Propolis(pot);
+					break;
+				case 2:
+					pot = new Rayon(pot);
+					break;
+				case 3:
+					pot = new GeleeRoyale(pot);
+					break;
+				case 4:
+					pot = new HuileEssentielleDeCitronVert(pot);
+					break;
+				case 5:
+					pot = new Pollen(pot);
+					break;
+				case 6:
+					pot = new BrisuresDeTruffesNoires(pot);
+					break;
+				default:
+					System.out.println("Saisie incorrecte, merci de saisir un nombre compris entre 1 et 6");
+					break;
 			}
 			System.out.println(
 					"Voici les options de votre pot : " + pot.getNom() + ". Prix total: " + pot.getPrix() + "\n");
@@ -76,17 +144,16 @@ public class App {
 				}
 			} while (erreur);
 			switch (reponse) {
-			case "O":
-				continuer = true;
-				break;
-			case "N":
-				continuer = false;
-				break;
-			default:
-				break;
+				case "O":
+					continuer = true;
+					break;
+				case "N":
+					continuer = false;
+					break;
+				default:
+					break;
 			}
 		} while (continuer);
-
 	}
 
 	private static int demanderChoix(String message, int borneMin, int borneMax) {
@@ -114,7 +181,5 @@ public class App {
 		System.out.println("4) Ajouter Huile essentielle citron vert");
 		System.out.println("5) Ajouter Pollen");
 		System.out.println("6) Ajouter Brisures de truffes noires");
-
 	}
 }
-

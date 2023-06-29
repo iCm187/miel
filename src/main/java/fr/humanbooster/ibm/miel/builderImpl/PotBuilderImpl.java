@@ -11,7 +11,7 @@ import fr.humanbooster.ibm.miel.business.Miel;
 import fr.humanbooster.ibm.miel.business.Poids;
 import fr.humanbooster.ibm.miel.business.Pot;
 import fr.humanbooster.ibm.miel.business.Prix;
-import fr.humanbooster.ibm.miel.factory.EtiquetteFactory;
+import fr.humanbooster.ibm.miel.factories.EtiquetteFactory;
 
 public class PotBuilderImpl implements PotBuilder {
 
@@ -25,7 +25,7 @@ public class PotBuilderImpl implements PotBuilder {
 	public PotBuilderImpl() {
 		
 		pot = new Pot();
-		pot.setNom("Pot");
+		pot.setNom("POT");
 		
 		Poids p250 = new Poids("250 gr", 250f);
 		Poids p500 = new Poids("500 gr", 500f);
@@ -102,7 +102,7 @@ public class PotBuilderImpl implements PotBuilder {
 	}
 
 	public PotBuilder ajouterEtiquette(String message) {
-		pot.setEtiquette(etiquetteFactory.ecrireEtiquette(message));
+		pot.setEtiquette(etiquetteFactory.fabriquerEtiquette(message));
 		return this;
 	}
 
